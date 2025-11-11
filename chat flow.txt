@@ -1,0 +1,67 @@
+{
+    "start": [
+        {
+            "id": "welcome",
+            "type": "writeMessage",
+            "message": "Hello, what are you looking for today?",
+            "next": "waitForResponse"
+        },
+        {
+            "id": "waitForResponse",
+            "type": "waitForResponse",
+            "next": "detectIntent"
+        },
+        {
+            "id": "detectIntent",
+            "type": "detectResponseIntent",
+            "options": [
+                "What is the weather",
+                "What is the time",
+                "yes",
+                "no"
+            ],
+            "next": {
+                "What is the weather": "weather",
+                "What is the time": "time",
+                "yes": "yes",
+                "no": "no"
+            },
+            "fallback": "notUnderstood"
+        },
+        {
+            "id": "weather",
+            "type": "writeMessage",
+            "message": "It's rainy and 10 degrees.",
+            "next": "sendMessage"
+        },
+        {
+            "id": "time",
+            "type": "writeMessage",
+            "message": "Time now is 10:00 AM.",
+            "next": "sendMessage"
+        },
+        {
+            "id": "sendMessage",
+            "type": "writeMessage",
+            "message": "Do you need anything else?",
+            "next": "waitForResponse"
+        },
+        {
+            "id": "notUnderstood",
+            "type": "writeMessage",
+            "message": "Please ask again, I didn't understand you!",
+            "next": "waitForResponse"
+        },
+        {
+            "id": "yes",
+            "type": "writeMessage",
+            "message": "Ok, let me know what else you need.",
+            "next": "waitForResponse"
+        },
+        {
+            "id": "no",
+            "type": "writeMessage",
+            "message": "Thanks, bye!"
+        }
+    ]
+}
